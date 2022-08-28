@@ -1,0 +1,55 @@
+{
+  "abis": [
+    "arm64-v8a"
+  ],
+  "assets": [],
+  "build": {
+    "build_id": "4CA326F5-80",
+    "build_number": 80,
+    "build_time": 1661722301239,
+    "release": true
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "icon": "images/ic_app_logo.png",
+  "launchConfig": {
+    "displaySplash": false,
+    "hideLogs": false,
+    "splashText": "",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "百闪狩猎-无密",
+  "optimization": {
+    "obfuscateComponents": false,
+    "removeAccessibilityService": false,
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.startbssl.app.org",
+  "permissionConfig": {
+    "requestListOnStartup": [
+      "android.permission.WRITE_EXTERNAL_STORAGE"
+    ]
+  },
+  "publish": {
+    "category": "",
+    "details": "",
+    "maxAutoJsVersion": 0,
+    "maxProVersion": 0,
+    "minAutoJsVersion": 0,
+    "minProVersion": 0,
+    "minSdkVersion": 0,
+    "permissions": [],
+    "summary": "",
+    "tags": []
+  },
+  "scripts": {},
+  "signingConfig": {
+    "alias": "",
+    "keystore": "",
+    "uuid": ""
+  },
+  "versionCode": 0,
+  "versionName": "1.4"
+}
