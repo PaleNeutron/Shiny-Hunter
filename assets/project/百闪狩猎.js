@@ -149,33 +149,8 @@ exit();
 
 
 //功能
-//检测环境功能
-function checkEnv(){
-    log("检测环境");
-    
-    if(id("hl_cd_text").exists()){
-    log("CD计时器✓");
-    }
-    else{
-    log("CD计时器x");
-    }
-    
-    if(Robject && Robject.clickable()==true){
-        log("狙击栏✓");
-    }
-    else{
-        log("狙击栏x");
-    }
-    
-    if(Lobject && Lobject.clickable()==true){
-        log("附近雷达✓");
-    }
-    else{
-        log("附近雷达x");
-    }
-}
-    
 
+    
     //检测加载
     function checkMap(){
         radar = className("android.widget.RelativeLayout").boundsInside(0,0,device.width/2,device.height).find();
@@ -273,15 +248,7 @@ function checkEnv(){
         clicks(wx,wy);
     }
     
-    //点击天气驾驶提示
-    function clickFirstWarning(){
-        let fwx = 548;
-        let fwy =  1694; 
-        sleep(1000);
-        clicks(fwx,fwy);
-    }
-    
-    
+      
     //点击指南针
     function clickCompass(){
         let cx = 987;
@@ -316,6 +283,7 @@ function checkEnv(){
 
         sleep(100);
         home();
+        sleep(1000);
 
         var img_icon = images.read("icon.png");
         sleep(2000);
@@ -377,24 +345,27 @@ function checkEnv(){
         return cy;
     }
 
+
+
+    //close pokemon go
+
     function closeApp() {
         let packageName = currentPackage();
         app.openAppSetting(packageName);
         text(app.getAppName(packageName)).waitFor();
-        let is_sure = textMatches(/(.制..|.束..|...行)/).findOne();
+        let is_sure = textMatches(/(强...|..停.|...止|结...|..运.|.制..|.束..|...行|强制停止|结束运行)/).findOne();
         if (is_sure.enabled()) {
-            textMatches(/(.制..|.束..|...行)/).findOne().click();
+            textMatches(/(强...|..停.|...止|结...|..运.|.制..|.束..|...行|强制停止|结束运行)/).findOne().click();
             sleep(3000);
             textMatches(/(.*确.*|.*定.*)/).findOne().click();
             sleep(3000);
             log(app.getAppName(packageName) + "应用已被关闭");
             sleep(1000);
-            home();
         } else {
             log(app.getAppName(packageName) + "应用不能被正常关闭 请前往https://desoiat.github.io/2022/08/26/Pokemon-Go/" + "进行反馈");
-            back();
         }
      }
+
 
     function screenCheck(){
 
@@ -405,6 +376,7 @@ function checkEnv(){
     var img_dojo = images.read("dojo.png");
     var img_egg = images.read("egg.png");
     var img_safe = images.read("safe.png");
+    var img_icon = images.read("icon.png");
 
 
     sleep(500);
@@ -419,6 +391,7 @@ function checkEnv(){
     var dojoScreen = findImage(currentScreen,img_dojo, {threshold: 0.86});
     var safeScreen = findImage(currentScreen,img_safe, {threshold: 0.86});
     var eggScreen = findImage(currentScreen,img_egg, {threshold: 0.86});
+    var iconScreen = findImage(currentScreen,img_icon,{threshold: 0.70});
 
     if(envWarningScreen){
         log("安全提示1");
@@ -450,6 +423,11 @@ function checkEnv(){
     else if(eggScreen){
         log("Raids");
         back();
+    }
+    else if(iconScreen){
+        
+        startGame();
+
     }
 
 
